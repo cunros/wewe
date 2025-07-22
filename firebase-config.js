@@ -1,3 +1,6 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAEhPhjnPeZR3a9gP_9Hrl_tbZ5lOkCqew",
   authDomain: "snakegame-fa0d4.firebaseapp.com",
@@ -7,4 +10,5 @@ const firebaseConfig = {
   appId: "1:784708945540:web:2c672219ee458aa51ee4d1"
 };
 
-firebase.initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
