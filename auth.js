@@ -16,7 +16,7 @@ function signup() {
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
-      alert("Signup successful! You can now log in.");
+      alert("Signup successful!");
     })
     .catch(err => alert("Signup failed: " + err.message));
 }
