@@ -2,21 +2,33 @@
 <html>
 <head>
   <title>Nigga Game</title>
-  <link rel="stylesheet" href="snake.css">
-  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    canvas {
+      background-color: #000;
+      border: 3px solid #333;
+    }
+  </style>
 </head>
 <body>
-  <canvas id="board"></canvas>
-  
-  <script src="firebase-config.js"></script>
-  <script>
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "index.html"; //
-      }
-    });
-  </script>
+  <h1>Welcome to Snake!</h1>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+
   <script src="snake.js"></script>
 </body>
 </html>
