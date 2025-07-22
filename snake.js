@@ -48,7 +48,7 @@ function gameLoop(timestamp) {
 
 function update() {
     context.clearRect(0, 0, board.width, board.height);
-    context.fillStyle = "black";
+    context.fillStyle = "green";
     context.fillRect(0, 0, board.width, board.height);
 
     context.fillStyle = "yellow";
