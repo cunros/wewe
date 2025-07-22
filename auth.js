@@ -1,10 +1,9 @@
-const auth = firebase.auth();
-
+// auth.js
 function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  
-  auth.signInWithEmailAndPassword(email, password)
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
       window.location.href = "game.html";
     })
@@ -14,10 +13,10 @@ function login() {
 function signup() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  
-  auth.createUserWithEmailAndPassword(email, password)
+
+  firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
-      alert("Account created! You can now log in.");
+      alert("Signup successful! You can now log in.");
     })
     .catch(err => alert("Signup failed: " + err.message));
 }
