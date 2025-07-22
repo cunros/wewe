@@ -1,6 +1,0 @@
-services:
-  - type: static
-    name: snake-game
-    env: static
-    buildCommand: "" 
-    staticPublishPath: .
