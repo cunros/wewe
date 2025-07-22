@@ -13,6 +13,8 @@ let snakeBody = [];
 let foodX;
 let foodY;
 
+let score = 0;
+let scoreElement;
 let gameOver = false;
 let lastTime = 0;
 let gameSpeed = 100;
@@ -31,6 +33,17 @@ window.onload = () => {
     board.style.margin = "auto";
     board.style.imageRendering = "pixelated";
 
+    scoreElement = document.createElement("div");
+    scoreElement.style.position = "absolute";
+    scoreElement.style.top = "10px";
+    scoreElement.style.left = "50%";
+    scoreElement.style.transform = "translateX(-50%)";
+    scoreElement.style.fontSize = "20px";
+    scoreElement.style.color = "white";
+    scoreElement.style.fontFamily = "Arial, sans-serif";
+    scoreElement.innerText = "Score: 0";
+    document.body.appendChild(scoreElement);
+
     placeFood();
     document.addEventListener("keydown", changeDirection);
     requestAnimationFrame(gameLoop);
@@ -48,7 +61,7 @@ function gameLoop(timestamp) {
 
 function update() {
     context.clearRect(0, 0, board.width, board.height);
-    context.fillStyle = "green";
+    context.fillStyle = "#3fa34d"; // Green background
     context.fillRect(0, 0, board.width, board.height);
 
     context.fillStyle = "yellow";
@@ -57,6 +70,8 @@ function update() {
     if (snakeX === foodX && snakeY === foodY) {
         snakeBody.push([foodX, foodY]);
         placeFood();
+        score += 1;
+        scoreElement.innerText = "Score: " + score;
     }
 
     for (let i = snakeBody.length - 1; i > 0; i--) {
@@ -117,16 +132,40 @@ function endGame() {
 }
 
 function showGameOverMessage() {
-    let msg = document.createElement("div");
-    msg.innerText = "Game Over!";
-    msg.style.position = "absolute";
-    msg.style.top = "50%";
-    msg.style.left = "50%";
-    msg.style.transform = "translate(-50%, -50%)";
-    msg.style.color = "white";
-    msg.style.fontSize = "32px";
-    msg.style.backgroundColor = "rgba(0,0,0,0.6)";
-    msg.style.padding = "20px";
-    msg.style.borderRadius = "10px";
-    document.body.appendChild(msg);
+    let container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.top = "50%";
+    container.style.left = "50%";
+    container.style.transform = "translate(-50%, -50%)";
+    container.style.color = "white";
+    container.style.fontSize = "32px";
+    container.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+    container.style.padding = "20px";
+    container.style.borderRadius = "10px";
+    container.style.textAlign = "center";
+
+    let message = document.createElement("div");
+    message.innerText = "Game Over!";
+    container.appendChild(message);
+
+    let finalScore = document.createElement("div");
+    finalScore.innerText = "Your Score: " + score;
+    finalScore.style.marginTop = "10px";
+    finalScore.style.fontSize = "20px";
+    container.appendChild(finalScore);
+
+    let retryButton = document.createElement("button");
+    retryButton.innerText = "Retry";
+    retryButton.style.marginTop = "15px";
+    retryButton.style.fontSize = "18px";
+    retryButton.style.padding = "10px 20px";
+    retryButton.style.cursor = "pointer";
+    retryButton.style.border = "none";
+    retryButton.style.borderRadius = "6px";
+    retryButton.style.backgroundColor = "#00bfff";
+    retryButton.style.color = "white";
+    retryButton.onclick = () => location.reload();
+
+    container.appendChild(retryButton);
+    document.body.appendChild(container);
 }
